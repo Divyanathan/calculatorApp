@@ -7,7 +7,7 @@
 
     android:orientation="vertical"
     android:paddingTop="3dp"
-    tools:context="com.example.user.calculatorapp.ShowResult">
+    tools:context="com.example.user.calculatorapp.ShowResultFragment">
 
     <TextView
         android:id="@+id/manipulate"

@@ -7,7 +7,7 @@
 
     android:orientation="vertical"
     android:paddingTop="8dp"
-    tools:context="com.example.user.calculatorapp.NumberPad">
+    tools:context="com.example.user.calculatorapp.NumberPadFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

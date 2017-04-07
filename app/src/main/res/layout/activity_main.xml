@@ -10,14 +10,14 @@
     <fragment
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:name="com.example.user.calculatorapp.ShowResult"
+        android:name="com.example.user.calculatorapp.ShowResultFragment"
         android:id="@+id/resultFragment"
         android:layout_weight="1.2" />
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:name="com.example.user.calculatorapp.NumberPad"
+        android:name="com.example.user.calculatorapp.NumberPadFragment"
         android:id="@+id/numberPadFragment"
         android:layout_weight="3" />
 </LinearLayout>

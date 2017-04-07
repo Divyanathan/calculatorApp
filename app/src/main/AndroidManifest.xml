@@ -15,8 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowResult" />
-        <activity android:name=".NumberPad"></activity>
+        <activity android:name=".ShowResultFragment" />
+        <activity android:name=".NumberPadFragment"></activity>
     </application>
 
 </manifest>
