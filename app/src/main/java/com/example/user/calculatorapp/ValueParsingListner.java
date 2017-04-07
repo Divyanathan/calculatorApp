@@ -5,6 +5,6 @@ package com.example.user.calculatorapp;
  */
 
 public interface ValueParsingListner {
-    public void passOprands(int oprands);
+    public void passOprands(char oprands);
     public  void passOperator(char oprators);
 }

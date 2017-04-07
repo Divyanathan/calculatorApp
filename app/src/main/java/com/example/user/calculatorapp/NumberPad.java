@@ -82,46 +82,52 @@ public class NumberPad extends Fragment implements View.OnClickListener
         switch (v.getId()){
 
             case R.id.zero:
-                parseValue.passOprands(Integer.parseInt(buttonZero.getText().toString()));
+               // parseValue.passOprands(Integer.parseInt(buttonZero.getText().toString()));
                 //Toast.makeText(getActivity(), "zero", Toast.LENGTH_SHORT).show();
+                parseValue.passOprands('0');
                 break;
 
             case R.id.one:
-                parseValue.passOprands(1);
+                parseValue.passOprands('1');
                 //Toast.makeText(getActivity(), "one", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.two:
-                parseValue.passOprands(2);
+                parseValue.passOprands('2');
                 break;
 
             case R.id.three:
-                parseValue.passOprands(3);
+                parseValue.passOprands('3');
                 break;
 
             case R.id.four:
-                parseValue.passOprands(4);
-                break;
-            case R.id.five:
-                parseValue.passOprands(5);
-                break;
-            case R.id.six:
-                parseValue.passOprands(6);
-                break;
-            case R.id.seven:
-                parseValue.passOprands(7);
-                break;
-            case R.id.eight:
-                parseValue.passOprands(8);
-                break;
-            case R.id.nine:
-                parseValue.passOprands(9);
+                parseValue.passOprands('4');
                 break;
 
+            case R.id.five:
+                parseValue.passOprands('5');
+                break;
+
+            case R.id.six:
+                parseValue.passOprands('6');
+                break;
+
+            case R.id.seven:
+                parseValue.passOprands('7');
+                break;
+
+            case R.id.eight:
+                parseValue.passOprands('8');
+                break;
+
+            case R.id.nine:
+                parseValue.passOprands('9');
+                break;
 
             case R.id.dot:
-                parseValue.passOperator('.');
+                parseValue.passOprands('.');
                 break;
+
             case R.id.sign:
                 parseValue.passOperator('s');
                 break;

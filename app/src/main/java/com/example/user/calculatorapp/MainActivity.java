@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity implements  ValueParsingList
     }
 
     @Override
-    public void passOprands(int oprands) {
+    public void passOprands(char oprands) {
         //a=a*10+oprands;
 
-        showResult.displayOprands(""+oprands);
+        showResult.displayOprands(oprands);
     }
 
     @Override
