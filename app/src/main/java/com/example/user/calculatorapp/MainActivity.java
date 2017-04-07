@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity implements  ValueParsingList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         showResult=(ShowResult) getSupportFragmentManager().findFragmentById(R.id.resultFragment);
-        ShowResult lShow = new ShowResult();
-        getSupportFragmentManager().beginTransaction().add(R.id.idj,lShow).commit();
+     /*   ShowResult lShow = new ShowResult();
+        getSupportFragmentManager().beginTransaction().add(R.id.idj,lShow).commit();*/
 
     }
 

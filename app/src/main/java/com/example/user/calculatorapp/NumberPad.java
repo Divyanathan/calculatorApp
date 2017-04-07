@@ -80,20 +80,25 @@ public class NumberPad extends Fragment implements View.OnClickListener
     public void onClick(View v) {
 
         switch (v.getId()){
+
             case R.id.zero:
                 parseValue.passOprands(Integer.parseInt(buttonZero.getText().toString()));
                 //Toast.makeText(getActivity(), "zero", Toast.LENGTH_SHORT).show();
                 break;
+
             case R.id.one:
                 parseValue.passOprands(1);
                 //Toast.makeText(getActivity(), "one", Toast.LENGTH_SHORT).show();
                 break;
+
             case R.id.two:
                 parseValue.passOprands(2);
                 break;
+
             case R.id.three:
                 parseValue.passOprands(3);
                 break;
+
             case R.id.four:
                 parseValue.passOprands(4);
                 break;

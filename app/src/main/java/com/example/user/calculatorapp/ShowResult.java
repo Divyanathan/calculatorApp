@@ -164,24 +164,37 @@ public class ShowResult extends Fragment {
     void showResult(){
         isEqualsUsed=true;
         long res;
+        double res1;
 
         if(numberOfOprators==0){
             viewReslutTextView.setText("="+valueOfOprandOne);
         }else {
             switch (theOprator){
                 case '+':
-                     res=Long.parseLong(valueOfOprandOne)+Long.parseLong(valueOfOpranTwo);
-                    existingValue =""+res;
-                    viewReslutTextView.setText("="+res);
+                    if(valueOfOprandOne.contains(".")||valueOfOpranTwo.contains(".")){
+                        res1=Double.parseDouble(valueOfOprandOne)+Double.parseDouble(valueOfOpranTwo);
+                        existingValue=""+res1;
+                        viewReslutTextView.setText("="+res1);
+                    }else {
+                        res = Long.parseLong(valueOfOprandOne) + Long.parseLong(valueOfOpranTwo);
+                        existingValue =""+res;
+                        viewReslutTextView.setText("="+res);
+                    }
                     isOpratorEnter=false;
                     numberOfOprators=0;
                    valueOfOprandOne="";;
                     valueOfOpranTwo="";
                     break;
                 case '-':
-                    res=Long.parseLong(valueOfOprandOne)-Long.parseLong(valueOfOpranTwo);
-                    existingValue =""+res;
-                    viewReslutTextView.setText("="+res);
+                    if(valueOfOprandOne.contains(".")||valueOfOpranTwo.contains(".")){
+                        res1=Double.parseDouble(valueOfOprandOne)-Double.parseDouble(valueOfOpranTwo);
+                        existingValue=""+res1;
+                        viewReslutTextView.setText("="+res1);
+                    }else {
+                        res = Long.parseLong(valueOfOprandOne) - Long.parseLong(valueOfOpranTwo);
+                        existingValue =""+res;
+                        viewReslutTextView.setText("="+res);
+                    }
                     isOpratorEnter=false;
                     numberOfOprators=0;
                    valueOfOprandOne="";;
@@ -189,9 +202,12 @@ public class ShowResult extends Fragment {
                     break;
                 case '/':
                      Double s;
+                    Double opr1,opr2;
                    /* s= ((double)valueOfOprandOne/valueOfOpranTwo);
                     existingValue =s.longValue();*/
-                    s=((double)(Long.parseLong(valueOfOprandOne)/Long.parseLong(valueOfOpranTwo)));
+                    opr1=Double.parseDouble(valueOfOprandOne);
+                    opr2=Double.parseDouble(valueOfOpranTwo);
+                    s=((double)opr1/opr2);
                     existingValue =""+s;
                     viewReslutTextView.setText("="+s);
                     isOpratorEnter=false;
@@ -200,9 +216,15 @@ public class ShowResult extends Fragment {
                     valueOfOpranTwo="";
                     break;
                 case '*':
-                    res=Long.parseLong(valueOfOprandOne)+Long.parseLong(valueOfOpranTwo);
-                    existingValue =""+res;
-                    viewReslutTextView.setText("="+res);
+                    if(valueOfOprandOne.contains(".")||valueOfOpranTwo.contains(".")){
+                        res1=Double.parseDouble(valueOfOprandOne)*Double.parseDouble(valueOfOpranTwo);
+                        existingValue=""+res1;
+                        viewReslutTextView.setText("="+res1);
+                    }else {
+                        res = Long.parseLong(valueOfOprandOne) * Long.parseLong(valueOfOpranTwo);
+                        existingValue =""+res;
+                        viewReslutTextView.setText("="+res);
+                    }
                     isOpratorEnter=false;
                     numberOfOprators=0;
                    valueOfOprandOne="";;
