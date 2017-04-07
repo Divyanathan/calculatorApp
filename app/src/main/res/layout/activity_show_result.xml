@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_show_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:paddingTop="3dp"
+    tools:context="com.example.user.calculatorapp.ShowResult">
+
+    <TextView
+        android:id="@+id/manipulate"
+        android:textSize="30dp"
+        android:textAlignment="textEnd"
+        android:layout_gravity="end"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:text="0"/>
+
+    <TextView
+        android:id="@+id/reslult"
+        android:textSize="30dp"
+        android:textAlignment="textEnd"
+        android:layout_gravity="end"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+      />
+</LinearLayout>
