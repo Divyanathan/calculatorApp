@@ -19,7 +19,7 @@ public class NumberPadFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.activity_number_pad, null);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_number_pad, container,false);
 
         mButtonZero =(Button)root.findViewById(R.id.zero); mButtonZero.setOnClickListener(this);
 
@@ -126,14 +126,10 @@ public class NumberPadFragment extends Fragment implements View.OnClickListener
                 mParseValuetoInterface.passOprands('.');
                 break;
 
-            case R.id.sign:
-                mParseValuetoInterface.passOperator('s');
-                break;
-            case R.id.sum:
-                mParseValuetoInterface.passOperator('=');
-                break;
+
+
             case R.id.bracket:
-                mParseValuetoInterface.passOperator('(');
+               // mParseValuetoInterface.passOperator('(');
                 break;
             case R.id.addition:
                 mParseValuetoInterface.passOperator('+');
@@ -148,10 +144,16 @@ public class NumberPadFragment extends Fragment implements View.OnClickListener
                 mParseValuetoInterface.passOperator('*');
                 break;
             case R.id.delete:
-                mParseValuetoInterface.passOperator('d');
+                mParseValuetoInterface.passManipulators('d');
                 break;
             case R.id.cacncel:
-                mParseValuetoInterface.passOperator('c');
+                mParseValuetoInterface.passManipulators('c');
+                break;
+            case R.id.sign:
+                mParseValuetoInterface.passManipulators('s');
+                break;
+            case R.id.sum:
+                mParseValuetoInterface.passManipulators('=');
                 break;
         }
     }

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.example.user.calculatorapp.MainActivity">
 
-    <fragment
+  <!--  <fragment
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:name="com.example.user.calculatorapp.ShowResultFragment"
@@ -19,5 +19,17 @@
         android:layout_height="0dp"
         android:name="com.example.user.calculatorapp.NumberPadFragment"
         android:id="@+id/numberPadFragment"
-        android:layout_weight="3" />
+        android:layout_weight="3" /> -->
+    <FrameLayout
+        android:id="@+id/resultFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.2"/>
+    <FrameLayout
+        android:id="@+id/keyPadFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"/>
+
+
 </LinearLayout>
