@@ -46,6 +46,7 @@ public class ShowResultFragment extends Fragment {
             mIsEqualsUsed = false;
             mTheOprator = '\0';
             mIsOpratorEnter = false;
+            mIsFormatError=false;
             mExistingValue = "";
 
             mValueOfOprandOne = "" + pOprands;
@@ -77,7 +78,7 @@ public class ShowResultFragment extends Fragment {
 
                     } else {
 
-                        if(mValueOfOprandOne.length()<16) {
+                        if(mValueOfOprandOne.length()<15) {
                             mValueOfOprandOne = mValueOfOprandOne + pOprands;
                         }
                         mManuplateTextView.setText(mValueOfOprandOne);
@@ -88,7 +89,7 @@ public class ShowResultFragment extends Fragment {
                 // mValueOfOprandOne = mValueOfOprandOne * 10 + pOprands;
                 else if (!mManuplateTextView.getText().toString().contains(".")) {
 
-                    if(mValueOfOprandOne.length()<16) {
+                    if(mValueOfOprandOne.length()<15) {
                         mValueOfOprandOne = mValueOfOprandOne + pOprands;
                     }
                     mManuplateTextView.setText("" + mValueOfOprandOne);
@@ -97,7 +98,7 @@ public class ShowResultFragment extends Fragment {
 
                     if (pOprands != '.') {
 
-                        if(mValueOfOprandOne.length()<16) {
+                        if(mValueOfOprandOne.length()<15) {
                             mValueOfOprandOne = mValueOfOprandOne + pOprands;
                         }
                         mManuplateTextView.setText("" + mValueOfOprandOne);
@@ -118,7 +119,7 @@ public class ShowResultFragment extends Fragment {
 
                     } else {
 
-                        if (mValueOfOpranTwo.length()<16) {
+                        if (mValueOfOpranTwo.length()<15) {
                             mValueOfOpranTwo = mValueOfOpranTwo + pOprands;
                         }
                         mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
@@ -136,7 +137,7 @@ public class ShowResultFragment extends Fragment {
 
                     } else {
 
-                        if (mValueOfOpranTwo.length()<16) {
+                        if (mValueOfOpranTwo.length()<15) {
                             mValueOfOpranTwo = mValueOfOpranTwo + pOprands;
                         }
                         mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
@@ -148,7 +149,7 @@ public class ShowResultFragment extends Fragment {
 
                         if (pOprands != '.') {
 
-                            if (mValueOfOpranTwo.length()<16) {
+                            if (mValueOfOpranTwo.length()<15) {
                                 mValueOfOpranTwo = mValueOfOpranTwo + pOprands;
                             }
                             mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
@@ -156,7 +157,7 @@ public class ShowResultFragment extends Fragment {
                         }
                     } else {
 
-                        if (mValueOfOpranTwo.length()<16) {
+                        if (mValueOfOpranTwo.length()<15) {
                             mValueOfOpranTwo = mValueOfOpranTwo + pOprands;
                         }
                         mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
@@ -209,8 +210,11 @@ public class ShowResultFragment extends Fragment {
 
                 mManuplateTextView.setText("0");
                 mViewReslutTextView.setText("");
+                mValueOfOprandOne="";
+                mValueOfOpranTwo="";
                 mIsEqualsUsed = false;
                 mIsOpratorEnter=false;
+                mIsFormatError=false;
                 break;
 
             case 'd':
@@ -256,18 +260,21 @@ public class ShowResultFragment extends Fragment {
                 break;
 
             case 's':
-                long lSign;
+
                 double lDecimalSign;
 
                 if (mIsEqualsUsed) {
 
-                    mValueOfOprandOne = mExistingValue.contains(".") ? ( ""+ parsingDoubleValue(mExistingValue) * -1)  : (""+ parsingLaongValue(mExistingValue) * -1);
+                   // mValueOfOprandOne = mExistingValue.contains(".") ? ( ""+ parsingDoubleValue(mExistingValue) * -1)  : (""+ parsingLaongValue(mExistingValue) * -1);
+
+                  mValueOfOprandOne=isDecimalOrNot(""+(parsingDoubleValue(mExistingValue) * -1));
                    if(mIsFormatError){
                       showFormatError();
                    }else {
                        mManuplateTextView.setText(mValueOfOprandOne);
                        mIsOpratorEnter = false;
                        mIsEqualsUsed = false;
+                       mIsFormatError=false;
                        mViewReslutTextView.setText("");
                    }
 
@@ -285,7 +292,7 @@ public class ShowResultFragment extends Fragment {
                         mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
 
                     }
-                    else if(mValueOfOpranTwo.contains(".")){
+                   /* else if(mValueOfOpranTwo.contains(".")){
 
                         lDecimalSign=parsingDoubleValue(mValueOfOpranTwo)*-1;
                         if(mIsFormatError){
@@ -295,13 +302,14 @@ public class ShowResultFragment extends Fragment {
                             mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
                         }
 
-                    }else {
+                    }*/else {
 
-                        lSign = parsingLaongValue(mValueOfOpranTwo) * -1;
+                        //lSign = parsingLaongValue(mValueOfOpranTwo) * -1;
+                        mValueOfOpranTwo=isDecimalOrNot(""+parsingDoubleValue(mValueOfOpranTwo)*-1);
                         if(mIsFormatError){
                             showFormatError();
                         }else {
-                            mValueOfOpranTwo = "" + lSign;
+                           // mValueOfOpranTwo = "" + lSign;
                             mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
                         }
 
@@ -319,7 +327,7 @@ public class ShowResultFragment extends Fragment {
                         mValueOfOprandOne = "0";
                         mManuplateTextView.setText(mValueOfOprandOne);
 
-                    } else if(mValueOfOprandOne.contains(".")){
+                    } /*else if(mValueOfOprandOne.contains(".")){
 
                         lDecimalSign = parsingDoubleValue(mValueOfOprandOne) * -1;
                         if(mIsFormatError){
@@ -330,14 +338,15 @@ public class ShowResultFragment extends Fragment {
                             mManuplateTextView.setText(mValueOfOprandOne);
                         }
 
-                    }
+                    }*/
                     else {
 
-                        lSign = parsingLaongValue(mValueOfOprandOne) * -1;
+                       // lSign = parsingLaongValue(mValueOfOprandOne) * -1;
+                        mValueOfOprandOne=isDecimalOrNot(""+parsingDoubleValue(mValueOfOprandOne)*-1);
                         if(mIsFormatError){
                             showFormatError();
                         }else {
-                            mValueOfOprandOne = "" + lSign;
+                           // mValueOfOprandOne = "" + lSign;
                             mManuplateTextView.setText(mValueOfOprandOne);
                         }
 
@@ -370,17 +379,6 @@ public class ShowResultFragment extends Fragment {
         return  lDoubleValue;
 
     }
-    long parsingLaongValue(String pOprand){
-        long lLongValue;
-        try{
-            lLongValue=Long.parseLong(pOprand);
-        }
-        catch (NumberFormatException e){
-            mIsFormatError=true;
-            lLongValue=0;
-        }
-        return lLongValue;
-    }
 
     double Calculation(double pOprandOne, double pOprandTwo){
 
@@ -394,7 +392,19 @@ public class ShowResultFragment extends Fragment {
             return pOprandOne / pOprandTwo;
         }
 
-        //return pOprandOne;
+
+    }
+    String isDecimalOrNot(String pOprand){
+
+        String[] findDecimalValue = pOprand.split("\\.");
+
+        if (findDecimalValue[1].equals("0")) {
+
+            return findDecimalValue[0];
+
+        } else {
+            return pOprand;
+        }
     }
     void calculationOfTheOprands(){
 
@@ -405,18 +415,14 @@ public class ShowResultFragment extends Fragment {
         }
 
         else {
-            String[] findDecimalValue = mExistingValue.split("\\.");
-            if (findDecimalValue[1].equals("0")) {
-                mExistingValue = findDecimalValue[0];
-                mViewReslutTextView.setText("=" + mExistingValue);
-            } else {
-                mViewReslutTextView.setText("=" + mExistingValue);
-            }
 
+            mExistingValue=isDecimalOrNot(mExistingValue);
+            mViewReslutTextView.setText(mExistingValue);
             mIsEqualsUsed = true;
             mIsOpratorEnter = false;
             mValueOfOprandOne = "";
             mValueOfOpranTwo = "";
+
         }
     }
 

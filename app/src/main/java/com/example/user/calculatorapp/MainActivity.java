@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements ValueParsingListnerInterFace, View.OnClickListener
 {
@@ -12,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements ValueParsingListn
     //int a=0;
     ShowResultFragment mShowResult;
     NumberPadFragment mNumberPadFragment;
+    Button mButtonDivision;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +26,10 @@ public class MainActivity extends AppCompatActivity implements ValueParsingListn
         lFragmentTransaction.add(R.id.resultFragment,mShowResult);
         lFragmentTransaction.add(R.id.keyPadFragment,mNumberPadFragment);
         lFragmentTransaction.commit();
-       // mShowResult =(ShowResultFragment) getSupportFragmentManager().findFragmentById(R.id.resultFragment);
+
+       // mButtonDivision =(Button) findViewById(R.id.division); mButtonDivision.setOnClickListener(this);
+
+        // mShowResult =(ShowResultFragment) getSupportFragmentManager().findFragmentById(R.id.resultFragment);
      /*   ShowResultFragment lShow = new ShowResultFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.idj,lShow).commit();*/
 
@@ -51,7 +56,12 @@ public class MainActivity extends AppCompatActivity implements ValueParsingListn
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.division:
+                //mParseValuetoInterface.passOperator('/');
+                mShowResult.displayOprands('/');
+                break;
+        }
     }
 }
 

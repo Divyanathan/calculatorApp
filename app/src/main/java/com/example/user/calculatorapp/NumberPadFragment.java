@@ -131,27 +131,35 @@ public class NumberPadFragment extends Fragment implements View.OnClickListener
             case R.id.bracket:
                // mParseValuetoInterface.passOperator('(');
                 break;
+
             case R.id.addition:
                 mParseValuetoInterface.passOperator('+');
                 break;
+
             case R.id.subtract:
                 mParseValuetoInterface.passOperator('-');
                 break;
+
             case R.id.division:
                 mParseValuetoInterface.passOperator('/');
                 break;
+
             case R.id.muliplication:
                 mParseValuetoInterface.passOperator('*');
                 break;
+
             case R.id.delete:
                 mParseValuetoInterface.passManipulators('d');
                 break;
+
             case R.id.cacncel:
                 mParseValuetoInterface.passManipulators('c');
                 break;
+
             case R.id.sign:
                 mParseValuetoInterface.passManipulators('s');
                 break;
+
             case R.id.sum:
                 mParseValuetoInterface.passManipulators('=');
                 break;
