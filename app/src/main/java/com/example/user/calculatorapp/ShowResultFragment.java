@@ -1,6 +1,7 @@
 package com.example.user.calculatorapp;
 
 import android.app.Fragment;
+import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -149,18 +150,19 @@ public class ShowResultFragment extends Fragment {
 
                         if (pOprands != '.') {
 
-                            if (mValueOfOpranTwo.length()<15) {
+                            if (mValueOfOpranTwo.length() < 15) {
                                 mValueOfOpranTwo = mValueOfOpranTwo + pOprands;
                             }
-                            mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
+                          isMorethanTwentyCharacter();
 
                         }
-                    } else {
 
-                        if (mValueOfOpranTwo.length()<15) {
+
+                    } else {
+                        if (mValueOfOpranTwo.length() < 15) {
                             mValueOfOpranTwo = mValueOfOpranTwo + pOprands;
                         }
-                        mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
+                       isMorethanTwentyCharacter();
 
                     }
                 }
@@ -242,7 +244,8 @@ public class ShowResultFragment extends Fragment {
                                 mValueOfOpranTwo = "";
                             }
 
-                            mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
+                            isMorethanTwentyCharacter();
+                           // mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
                         }
 
                     } else {
@@ -266,8 +269,16 @@ public class ShowResultFragment extends Fragment {
                 if (mIsEqualsUsed) {
 
                    // mValueOfOprandOne = mExistingValue.contains(".") ? ( ""+ parsingDoubleValue(mExistingValue) * -1)  : (""+ parsingLaongValue(mExistingValue) * -1);
+                    mValueOfOprandOne=isOprandContainsE_OrNot(parsingDoubleValue(mExistingValue) * -1);
+                /*    mValueOfOprandOne=""+lDecimalSign;
+                    if(mValueOfOprandOne.contains("E")){
+                        mValueOfOprandOne= String.format("%.0f", lDecimalSign);
+                    }
+                    else {
+                        mValueOfOprandOne=isDecimalOrNot(mValueOfOprandOne);
+                    }*/
 
-                  mValueOfOprandOne=isDecimalOrNot(""+(parsingDoubleValue(mExistingValue) * -1));
+
                    if(mIsFormatError){
                       showFormatError();
                    }else {
@@ -305,7 +316,8 @@ public class ShowResultFragment extends Fragment {
                     }*/else {
 
                         //lSign = parsingLaongValue(mValueOfOpranTwo) * -1;
-                        mValueOfOpranTwo=isDecimalOrNot(""+parsingDoubleValue(mValueOfOpranTwo)*-1);
+                       // mValueOfOpranTwo=isDecimalOrNot(""+parsingDoubleValue(mValueOfOpranTwo)*-1);
+                        mValueOfOpranTwo=isOprandContainsE_OrNot(parsingDoubleValue(mValueOfOpranTwo)*-1);
                         if(mIsFormatError){
                             showFormatError();
                         }else {
@@ -342,7 +354,8 @@ public class ShowResultFragment extends Fragment {
                     else {
 
                        // lSign = parsingLaongValue(mValueOfOprandOne) * -1;
-                        mValueOfOprandOne=isDecimalOrNot(""+parsingDoubleValue(mValueOfOprandOne)*-1);
+                       // mValueOfOprandOne=isDecimalOrNot(""+parsingDoubleValue(mValueOfOprandOne)*-1);
+                        mValueOfOprandOne=isOprandContainsE_OrNot(parsingDoubleValue(mValueOfOprandOne)*-1);
                         if(mIsFormatError){
                             showFormatError();
                         }else {
@@ -361,6 +374,7 @@ public class ShowResultFragment extends Fragment {
         }
     }
 
+
     void showFormatError(){
 
             mViewReslutTextView.setText("Number formate error");
@@ -371,7 +385,7 @@ public class ShowResultFragment extends Fragment {
 
         double lDoubleValue;
         try {
-            lDoubleValue=Double.parseDouble(pOprand);
+            lDoubleValue=Double.valueOf(pOprand);
         }catch (NumberFormatException e){
             mIsFormatError=true;
             lDoubleValue=0.0D;
@@ -380,18 +394,21 @@ public class ShowResultFragment extends Fragment {
 
     }
 
-    double Calculation(double pOprandOne, double pOprandTwo){
+    double calculation(double pOprandOne, double pOprandTwo){
 
         if(mTheOprator=='+') {
             return pOprandOne + pOprandTwo;
+
         }else if (mTheOprator=='-'){
             return pOprandOne - pOprandTwo;
+
         }else if (mTheOprator=='*'){
             return pOprandOne * pOprandTwo;
-        }else {
+
+        }else if(mTheOprator== '/'){
             return pOprandOne / pOprandTwo;
         }
-
+        return Double.NaN;
 
     }
     String isDecimalOrNot(String pOprand){
@@ -406,17 +423,44 @@ public class ShowResultFragment extends Fragment {
             return pOprand;
         }
     }
+    String isOprandContainsE_OrNot(double pOprand){
+
+        String lOprand=""+pOprand;
+
+        if(lOprand.contains("E")) {
+
+            return "" + String.format("%.0f", pOprand);
+
+        }
+        else {
+            return isDecimalOrNot(lOprand);
+        }
+    }
+    void isMorethanTwentyCharacter(){
+
+
+        if (mManuplateTextView.getText().toString().length() >=20) {
+            mManuplateTextView.setText(mValueOfOprandOne +"\n" +mTheOprator + mValueOfOpranTwo);
+        }
+        else {
+            mManuplateTextView.setText(mValueOfOprandOne + mTheOprator + mValueOfOpranTwo);
+        }
+    }
     void calculationOfTheOprands(){
 
 
-        mExistingValue = ""+Calculation(parsingDoubleValue(mValueOfOprandOne) ,parsingDoubleValue(mValueOfOpranTwo));
-        if(mIsFormatError){
+        double result = calculation(parsingDoubleValue(mValueOfOprandOne) ,parsingDoubleValue(mValueOfOpranTwo));
+
+        mExistingValue=isOprandContainsE_OrNot(result);
+
+       if(mIsFormatError){
             showFormatError();
         }
 
         else {
-
-            mExistingValue=isDecimalOrNot(mExistingValue);
+           if(mExistingValue.length()>15){
+               mExistingValue=mExistingValue.substring(0,15);
+           }
             mViewReslutTextView.setText(mExistingValue);
             mIsEqualsUsed = true;
             mIsOpratorEnter = false;
